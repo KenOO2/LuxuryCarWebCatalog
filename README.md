@@ -57,4 +57,8 @@ Tabla `autos` con columnas: `id`, `marca`, `modelo`, `anio`, `categoria`, `poten
 
 ## Despliegue
 
-Sitio en producción: 
+Sitio en producción: https://luxury-car-web-catalog.vercel.app/
+
+## Autor
+Kevin Alexander Ortez Oliva
+Se ha utlizado modelos de IA de claude para el diseño grafico y tutoria a la hora de crear este sitio web.
