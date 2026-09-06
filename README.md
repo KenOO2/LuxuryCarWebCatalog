@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Catálogo de Autos Deportivos y de Lujo
 
-## Getting Started
+Landing page construida con **Next.js 16 (App Router)** y **Supabase** como backend serverless, para la actividad "Dominio del App Router y Gestión de Datos con Next.js".
 
-First, run the development server:
+## Descripción del proyecto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Catálogo interactivo de autos deportivos y de lujo. Permite:
+- Ver el listado completo de autos en la página principal.
+- Filtrar autos por categoría mediante rutas dinámicas (`/catalogo/[categoria]`).
+- Ver el detalle de un auto específico (`/autos/[id]`).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Los datos se leen en tiempo real desde una base de datos Supabase (PostgreSQL) mediante Server Components, con políticas de Row Level Security configuradas para lectura pública.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tecnologías
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Next.js 16+ (App Router, Server Components)
+- Supabase (Base de datos + RLS)
+- Tailwind CSS
+- TypeScript
 
-## Learn More
+## Instrucciones de instalación local
 
-To learn more about Next.js, take a look at the following resources:
+1. Clonar el repositorio:
+   \`\`\`bash
+   git clone https://github.com/KenOO2/LuxuryCarWebCatalog
+   cd catalogo-autos
+   \`\`\`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Instalar dependencias:
+   \`\`\`bash
+   npm install
+   \`\`\`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Crear un archivo `.env.local` en la raíz con las variables descritas abajo.
 
-## Deploy on Vercel
+4. Correr en modo desarrollo:
+   \`\`\`bash
+   npm run dev
+   \`\`\`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. Abrir [http://localhost:3000](http://localhost:3000)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Variables de entorno necesarias
+
+Crear un archivo `.env.local` en la raíz del proyecto con:
+
+\`\`\`
+NEXT_PUBLIC_SUPABASE_URL=<tu-project-url-de-supabase>
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<tu-anon-public-key-de-supabase>
+\`\`\`
+
+Ambas se obtienen en Supabase: **Project Settings → API**. La `anon key` está diseñada para ser pública (queda protegida por las políticas RLS de la base de datos, no por estar oculta).
+
+## Estructura de datos (Supabase)
+
+Tabla `autos` con columnas: `id`, `marca`, `modelo`, `anio`, `categoria`, `potencia_hp`, `precio_usd`, `descripcion`, `imagen_url`, `slug`, `created_at`. RLS habilitado con política de lectura pública (`select`) para el rol `anon`.
+
+## Despliegue
+
+Sitio en producción: 
